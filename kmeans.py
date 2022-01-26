@@ -13,7 +13,7 @@ from nltk.stem import WordNetLemmatizer
 import plotly.graph_objects as go
 import numpy as np
 nltk.download('averaged_perceptron_tagger')
-
+ nltk.download('sentiwordnet')
 
 def freq_words_in_clusters(cluster_word_map, cluster_number):
     words = cluster_word_map[cluster_number]
