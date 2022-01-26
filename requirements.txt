@@ -3,21 +3,19 @@ numpy
 pandas
 selenium
 
-sklearn.feature_extraction.text
-plotly.graph_objects
-plotly.offline
+sklearn
+plotly
+
 nltk
-nltk.stem
-nltk.corpus
+
 wordcloud
-matplotlib.pyplot
+matplotlib
 time
 csv
 io
 demoji
 
 
-selenium.common.exceptions
 
 
 BytesIO
