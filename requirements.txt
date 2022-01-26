@@ -20,7 +20,7 @@ demoji
 selenium.common.exceptions
 
 
-io BytesIO
+BytesIO
 base64
 
 
