@@ -100,70 +100,65 @@ def cluster_sentiment(cluster_top_words):
 
 
 def app():
-    try:
-        st.title("Text Clustering Using K-Means")
-        st.subheader("Upload the comments file:")
-        st.write("Or Scrape by using the Scrapping Module")
+    st.title("Text Clustering Using K-Means")
+    st.subheader("Upload the comments file:")
+    st.write("Or Scrape by using the Scrapping Module")
 
-        uploaded_file = st.file_uploader("Choose a file")
-        df = pd.read_csv(uploaded_file)
-        df.drop(columns=df.columns[0],
-                axis=1,
-                inplace=True)
-        st.subheader("Original DataFrame")
-        st.write(df)
+    uploaded_file = st.file_uploader("Choose a file")
+    df = pd.read_csv(uploaded_file)
+    df.drop(columns=df.columns[0],
+            axis=1,
+            inplace=True)
+    st.subheader("Original DataFrame")
+    st.write(df)
 
-        processed_df = preprocessing.preprocessing(df)
-        preprocessing.remove_emoji(processed_df)
-        st.subheader("Processed DataFrame")
-        st.write(processed_df)
+    processed_df = preprocessing.preprocessing(df)
+    preprocessing.remove_emoji(processed_df)
+    st.subheader("Processed DataFrame")
+    st.write(processed_df)
 
-        comments = df['Comment'].values  # returns an array of comments
+    comments = df['Comment'].values  # returns an array of comments
 
-        tf_idf_vectorizer = TfidfVectorizer()
-        tf_idf = tf_idf_vectorizer.fit_transform(comments)
+    tf_idf_vectorizer = TfidfVectorizer()
+    tf_idf = tf_idf_vectorizer.fit_transform(comments)
 
-        kmeans = KMeans(n_clusters=3, init="k-means++", random_state=1)
-        kmeans.fit(tf_idf)
+    kmeans = KMeans(n_clusters=3, init="k-means++", random_state=1)
+    kmeans.fit(tf_idf)
 
-        # assigning each word to its cluster
-        cluster_word_map = {0: [], 1: [], 2: []}
-        for i in range(len(kmeans.labels_)):
-            comment = comments[i]
-            for word in comment.split():
-                cluster_word_map[kmeans.labels_[i]].append(word)
+    # assigning each word to its cluster
+    cluster_word_map = {0: [], 1: [], 2: []}
+    for i in range(len(kmeans.labels_)):
+        comment = comments[i]
+        for word in comment.split():
+            cluster_word_map[kmeans.labels_[i]].append(word)
 
-        st.subheader("Cluster 1 Frequent Words")
-        st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 0)[:20]))
+    st.subheader("Cluster 1 Frequent Words")
+    st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 0)[:20]))
 
-        st.subheader("Cluster 2 Frequent Words")
-        st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 1)[:20]))
+    st.subheader("Cluster 2 Frequent Words")
+    st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 1)[:20]))
 
-        st.subheader("Cluster 3 Frequent Words")
-        st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 2)[:20]))
+    st.subheader("Cluster 3 Frequent Words")
+    st.plotly_chart(plot_word_freq_chart(freq_words_in_clusters(cluster_word_map, 2)[:20]))
 
-        sentiment_cluster1 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,0)[:20])
-        sentiment_cluster2 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,1)[:20])
-        sentiment_cluster3 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,2)[:20])
-
+    sentiment_cluster1 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,0)[:20])
+    sentiment_cluster2 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,1)[:20])
+    sentiment_cluster3 = cluster_sentiment(freq_words_in_clusters(cluster_word_map,2)[:20])
 
 
-        cluster_counts = np.unique(kmeans.labels_, return_counts=True)
-        labels = ["Cluster 1: " + str(sentiment_cluster1), "Cluster 2: " + str(sentiment_cluster2),
-                  "Cluster 3: " + str(sentiment_cluster3)]
 
-        st.subheader("Cluster Sentiments Pie Chart")
+    cluster_counts = np.unique(kmeans.labels_, return_counts=True)
+    labels = ["Cluster 1: " + str(sentiment_cluster1), "Cluster 2: " + str(sentiment_cluster2),
+              "Cluster 3: " + str(sentiment_cluster3)]
 
-        fig = go.Figure(data=
-                        [go.Pie(labels=labels,
-                                values=cluster_counts[1])])
-        fig.update_layout(title="Cluster Sentiment Scores")
-        fig.update_traces(marker_line_width=2.5, opacity=0.8)
+    st.subheader("Cluster Sentiments Pie Chart")
 
-        st.plotly_chart(fig)
+    fig = go.Figure(data=
+                    [go.Pie(labels=labels,
+                            values=cluster_counts[1])])
+    fig.update_layout(title="Cluster Sentiment Scores")
+    fig.update_traces(marker_line_width=2.5, opacity=0.8)
 
-    except:
-        pass
-
+    st.plotly_chart(fig)
 
 
