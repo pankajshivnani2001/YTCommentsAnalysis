@@ -8,3 +8,5 @@ plotly
 
 nltk
 matplotlib
+wordcloud
+demoji
