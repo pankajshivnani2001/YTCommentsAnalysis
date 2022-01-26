@@ -4,7 +4,7 @@ from time import sleep
 import csv
 import io
 import pandas as pd
-
+import os
 
 def scrape_youtube_comments(
         url):  # takes the youtube video URL as parameter and returns the csv file name with the comments
