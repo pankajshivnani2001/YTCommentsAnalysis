@@ -10,3 +10,6 @@ nltk
 matplotlib
 wordcloud
 demoji
+textblob
+vaderSentiment
+emoji
