@@ -21,7 +21,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import emoji
-
+nltk.download('punkt')
 
 def createCloud(text, title, size=(10, 7)):
     # Processing Text
