@@ -1,6 +1,7 @@
 import pandas
 from wordcloud import STOPWORDS
 import nltk
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import demoji
