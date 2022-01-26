@@ -98,59 +98,55 @@ def compare_sentiments(sentiments1, sentiments2):
 
 
 def app():
-    try:
-        st.title("Youtube Comments Sentiment Analysis")
-        #st.subheader("Enter the YouTube URL:")
+    st.title("Youtube Comments Sentiment Analysis")
+    #st.subheader("Enter the YouTube URL:")
 
-        #url = st.text_input("YouTube URL", placeholder="YouTube URL")
-        # df = commentScrapper.scrape_youtube_comments(url)
+    #url = st.text_input("YouTube URL", placeholder="YouTube URL")
+    # df = commentScrapper.scrape_youtube_comments(url)
 
-        st.subheader("Upload the comments file:")
-        st.write("Or Scrape by using the Scrapping Module")
+    st.subheader("Upload the comments file:")
+    st.write("Or Scrape by using the Scrapping Module")
 
-        uploaded_file = st.file_uploader("Choose a file")
-        df = pd.read_csv(uploaded_file)
-        df.drop(columns=df.columns[0],
-                axis=1,
-                inplace=True)
-        st.write("Original DataFrame")
-        st.write(df)
-
-
-        df = preprocessing.preprocessing(df)
-        df = preprocessing.remove_emoji(df)
-
-        temp_df = df.copy(deep=True)
-
-        st.subheader("The Scrapped and Preprocessed comments are:")
-        st.write(df)
-
-        df["Sentiment(TB)"] = df["Comment"].apply(lambda row : TextBlob(row).sentiment.polarity)
-        df["Sentiment(TB)"] = df["Sentiment(TB)"].apply(lambda row : polarity_convert(row))
-
-        st.subheader("Comments with the Sentiments(Using TextBlob):")
-        st.write(df)
-
-        sentiments1 = sentiment_from_TB(df)
-        st.subheader("Overall Sentiments of the Comments(Using TextBlob):")
-        st.plotly_chart(sentiment_pie(sentiments1))
+    uploaded_file = st.file_uploader("Choose a file")
+    df = pd.read_csv(uploaded_file)
+    df.drop(columns=df.columns[0],
+            axis=1,
+            inplace=True)
+    st.write("Original DataFrame")
+    st.write(df)
 
 
-        temp_df["Sentiment(VS)"] = temp_df["Comment"].apply(lambda row : sentiment_from_VS(row))
-        temp_df["Positive %"] = temp_df["Comment"].apply(lambda row: positive_from_VS(row))
-        temp_df["Negative %"] = temp_df["Comment"].apply(lambda row: negative_from_VS(row))
-        temp_df["Neutral %"] = temp_df["Comment"].apply(lambda row: neutral_from_VS(row))
-        st.subheader("Comments with the Sentiments(Using VADER):")
-        st.write(temp_df)
+    df = preprocessing.preprocessing(df)
+    df = preprocessing.remove_emoji(df)
 
-        sentiments2 = sentiment_from_VS2(temp_df)
+    temp_df = df.copy(deep=True)
 
-        st.subheader("Overall Sentiments of the Comments(Using VADER):")
-        st.plotly_chart(sentiment_pie(sentiments2))
+    st.subheader("The Scrapped and Preprocessed comments are:")
+    st.write(df)
 
-        st.subheader("Comparing TextBlob Predictions with Vader Predictions:")
-        st.plotly_chart(compare_sentiments(sentiments1, sentiments2))
+    df["Sentiment(TB)"] = df["Comment"].apply(lambda row : TextBlob(row).sentiment.polarity)
+    df["Sentiment(TB)"] = df["Sentiment(TB)"].apply(lambda row : polarity_convert(row))
 
-    except:
-        pass
+    st.subheader("Comments with the Sentiments(Using TextBlob):")
+    st.write(df)
+
+    sentiments1 = sentiment_from_TB(df)
+    st.subheader("Overall Sentiments of the Comments(Using TextBlob):")
+    st.plotly_chart(sentiment_pie(sentiments1))
+
+
+    temp_df["Sentiment(VS)"] = temp_df["Comment"].apply(lambda row : sentiment_from_VS(row))
+    temp_df["Positive %"] = temp_df["Comment"].apply(lambda row: positive_from_VS(row))
+    temp_df["Negative %"] = temp_df["Comment"].apply(lambda row: negative_from_VS(row))
+    temp_df["Neutral %"] = temp_df["Comment"].apply(lambda row: neutral_from_VS(row))
+    st.subheader("Comments with the Sentiments(Using VADER):")
+    st.write(temp_df)
+
+    sentiments2 = sentiment_from_VS2(temp_df)
+
+    st.subheader("Overall Sentiments of the Comments(Using VADER):")
+    st.plotly_chart(sentiment_pie(sentiments2))
+
+    st.subheader("Comparing TextBlob Predictions with Vader Predictions:")
+    st.plotly_chart(compare_sentiments(sentiments1, sentiments2))
 
