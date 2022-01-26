@@ -1,4 +1,4 @@
-import streamlit as st
+streamlit
 import numpy as np
 import pandas as pd
 import selenium
