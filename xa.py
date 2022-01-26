@@ -24,14 +24,14 @@ import io
 import pandas as pd
 from io import BytesIO
 import base64
-#from pyxlsb import open_workbook as open_xlsb
+
 
 import commentScrapper
 import preprocessing
-import xa2
-import sentimentAnalyzer
-import homePage
-
+#import xa2
+#import sentimentAnalyzer
+#import homePage
+#from pyxlsb import open_workbook as open_xlsb
 
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
@@ -69,4 +69,4 @@ def app():
         pass
 
 
-
+app()
