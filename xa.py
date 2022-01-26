@@ -42,31 +42,29 @@ def convert_df(df):
 
 
 def app():
-    try:
-        st.title("YouTube Comments Scrapper")
-        st.subheader("Enter the YouTube Video URL to scrape")
-        url = st.text_input("YouTube URL", placeholder = "Enter YouTube URL")
-        df = commentScrapper.scrape_youtube_comments(url)
-        st.subheader("The Original Scrapped Data:")
-        st.write(df)
-        processed_df = preprocessing.preprocessing(df)
-        preprocessing.remove_emoji(processed_df)
-        st.subheader("After Preprocessing the Scrapped Data:")
-        st.write(processed_df)
-    
-        csv = convert_df(df)
 
-        filename = 'comments.csv'
+    st.title("YouTube Comments Scrapper")
+    st.subheader("Enter the YouTube Video URL to scrape")
+    url = st.text_input("YouTube URL", placeholder = "Enter YouTube URL")
+    df = commentScrapper.scrape_youtube_comments(url)
+    st.subheader("The Original Scrapped Data:")
+    st.write(df)
+    processed_df = preprocessing.preprocessing(df)
+    preprocessing.remove_emoji(processed_df)
+    st.subheader("After Preprocessing the Scrapped Data:")
+    st.write(processed_df)
 
-        st.download_button(
-            label="Download data as CSV",
-            data=csv,
-            file_name=filename,
-            mime='text/csv',
-        )
+    csv = convert_df(df)
 
-    except:
-        pass
+    filename = 'comments.csv'
+
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name=filename,
+        mime='text/csv',
+    )
+
 
 
 app()
