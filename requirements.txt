@@ -1,0 +1,30 @@
+import streamlit as st
+import numpy as np
+import pandas as pd
+import selenium
+from selenium import webdriver
+from sklearn.feature_extraction.text import CountVectorizer
+import plotly.graph_objects as go
+from plotly.offline import iplot
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from time import sleep
+import csv
+import io
+import demoji
+from wordcloud import STOPWORDS
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from time import sleep
+import csv
+import io
+import pandas as pd
+from io import BytesIO
+import base64
+
+
+import commentScrapper
+import preprocessing
