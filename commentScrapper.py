@@ -11,9 +11,11 @@ def scrape_youtube_comments(
 
     option = webdriver.ChromeOptions()
     option.add_argument("--headless")  # to make sure that the GUI is not visible to the user
-
+    option.add_argument("--disable-dev-shm-usage")
+    option.add_argument("--no-sandbox")
     # change executable path according to the web driver location on your system
-    driver = webdriver.Chrome(executable_path=r'C:\Users\Lenovo\Desktop\NLP\chromedriver.exe', options=option)
+    option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=option)
 
     driver.get(url)
     driver.maximize_window()
