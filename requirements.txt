@@ -9,7 +9,7 @@ plotly
 nltk
 
 wordcloud
-matplotlib
+
 time
 csv
 io
