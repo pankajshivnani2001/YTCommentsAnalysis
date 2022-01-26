@@ -4,7 +4,7 @@ pandas
 selenium
 
 sklearn.feature_extraction.text
-import plotly.graph_objects as go
+plotly.graph_objects
 plotly.offline
 nltk
 nltk.stem
