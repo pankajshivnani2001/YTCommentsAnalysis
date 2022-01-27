@@ -19,7 +19,7 @@ def scrape_youtube_comments(
     option.add_argument("--no-sandbox")
     # change executable path according to the web driver location on your system
     option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=option)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=option)
 
     driver.get(url)
     driver.maximize_window()
