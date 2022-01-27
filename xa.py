@@ -46,7 +46,8 @@ def app():
     st.title("YouTube Comments Scrapper")
     st.subheader("Enter the YouTube Video URL to scrape")
     url = st.text_input("YouTube URL", placeholder = "Enter YouTube URL")
-    df = commentScrapper.scrape_youtube_comments(url)
+    dictionary = commentScrapper.scrape_youtube_comments(url)
+    df = pd.DataFrame(dictionary)
     st.subheader("The Original Scrapped Data:")
     st.write(df)
     
