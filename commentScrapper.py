@@ -6,6 +6,10 @@ import io
 import pandas as pd
 import os
 
+# TODO: Return a file name constructed using the video title
+# TODO: Alter the  sleep() time 
+# TODO: Make changes in the while True loop.
+
 def scrape_youtube_comments(
         url):  # takes the youtube video URL as parameter and returns the csv file name with the comments
 
