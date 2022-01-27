@@ -49,10 +49,13 @@ def app():
     df = commentScrapper.scrape_youtube_comments(url)
     st.subheader("The Original Scrapped Data:")
     st.write(df)
-    processed_df = preprocessing.preprocessing(df)
-    preprocessing.remove_emoji(processed_df)
-    st.subheader("After Preprocessing the Scrapped Data:")
-    st.write(processed_df)
+    
+    #no need to preprocess the scrapped data in the scrapper module. We will do the preprocessing in the visualizer and sentimentAnalyzer module
+    
+    #processed_df = preprocessing.preprocessing(df)
+    #preprocessing.remove_emoji(processed_df)
+    #st.subheader("After Preprocessing the Scrapped Data:")
+    #st.write(processed_df)
 
     csv = convert_df(df)
 
