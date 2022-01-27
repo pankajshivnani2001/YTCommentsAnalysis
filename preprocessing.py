@@ -9,7 +9,7 @@ import demoji
 
 def preprocessing(df):
     #df["Comment"] = df["Comment"].apply(lambda row: str(row))
-    df["Comment"] = df["Comment"].apply(lambda row: row.lower())
+    #df["Comment"] = df["Comment"].apply(lambda row: row.lower())
     df["Comment"] = df["Comment"].apply(lambda row: remove_punctuation(row))
     df["Comment"] = df["Comment"].apply(lambda row: clean_contractions(row))
     df["Comment"] = df["Comment"].apply(lambda row: spell_correction(row))
