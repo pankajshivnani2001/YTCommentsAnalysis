@@ -75,6 +75,7 @@ def scrape_youtube_comments(
     driver.close()
 
     d = {"Username": username_lst, "Comment": comment_lst, "Likes": likes_lst}
-    df = pd.DataFrame(d)
+    #df = pd.DataFrame(d)
 
-    return df
+    #return df
+    return d
