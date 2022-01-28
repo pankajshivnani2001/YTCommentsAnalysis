@@ -23,7 +23,8 @@ def scrape_youtube_comments(
 
     driver.get(url)
     driver.maximize_window()
-    sleep(5)
+    #sleep(5)
+    sleep(2)
 
     try:
         video_title = driver.find_element_by_xpath('//*[@id="container"]/h1/yt-formatted-string').text
@@ -35,7 +36,8 @@ def scrape_youtube_comments(
 
     # execute JavaScript to scroll to the comments section
     driver.execute_script("arguments[0].scrollIntoView();", comment_section)
-    sleep(5)
+    #sleep(5)
+    sleep(2)
 
     # execute JavaScript to scroll to the bottom of the document
     prev_h = driver.execute_script("return document.documentElement.scrollHeight")
@@ -43,7 +45,8 @@ def scrape_youtube_comments(
     while True:
         # execute JavaScript to scroll down and wait for new comments to load .
         driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight);")
-        sleep(5)
+        #sleep(5)
+        sleep(2)
 
         # calculate new height
         curr_h = driver.execute_script("return document.documentElement.scrollHeight")
