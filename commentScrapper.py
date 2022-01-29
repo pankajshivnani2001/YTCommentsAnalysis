@@ -51,7 +51,7 @@ def scrape_youtube_comments(
         # calculate new height
         curr_h = driver.execute_script("return document.documentElement.scrollHeight")
         comments = driver.find_elements_by_xpath('//*[@id="content-text"]')
-        if curr_h == prev_h or len(comments) > 100:  # no new comments
+        if curr_h == prev_h or len(comments) > 600:  # no new comments
             break
         prev_h = curr_h
 
