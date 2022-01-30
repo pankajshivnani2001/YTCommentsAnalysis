@@ -74,11 +74,20 @@ def scrape_youtube_comments(
         username_lst.append(username.text)
         comment_lst.append(comment.text)
         likes_lst.append(likes.text)
+        
 
     driver.close()
 
     d = {"Username": username_lst, "Comment": comment_lst, "Likes": likes_lst}
     #df = pd.DataFrame(d)
+
+    #also adding the filename to the dictionary so the user can download the comments file with an appropriate name
+    filename = ""
+    for c in video_title:
+        if c in "abcdefghijklmnopqrstuvwxyz" or c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or c in "0123456789":
+            filename += c
+    filename += ".csv"
+    d['Filename'] = filename
 
     #return df
     return d
