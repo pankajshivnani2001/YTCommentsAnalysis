@@ -47,6 +47,8 @@ def app():
     st.subheader("Enter the YouTube Video URL to scrape")
     url = st.text_input("YouTube URL", placeholder = "Enter YouTube URL")
     dictionary = commentScrapper.scrape_youtube_comments(url)
+    filename = dictionary["Filename"]
+    dictionary.pop("Filename")
     df = pd.DataFrame(dictionary)
     st.subheader("The Original Scrapped Data:")
     st.write(df)
@@ -60,7 +62,7 @@ def app():
 
     csv = convert_df(df)
 
-    filename = 'comments.csv'
+    #filename = 'comments.csv'
 
     st.download_button(
         label="Download data as CSV",
