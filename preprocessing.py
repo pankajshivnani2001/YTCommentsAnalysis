@@ -188,17 +188,12 @@ def lemmatize(row):
 def clean_likes(text):
     if text == "":
         return 0
-    like = ""
-    for c in text:
-        if c == 'K':
-            return float(like) * 1000
-        elif c == 'M':
-            return float(like) * 1000000
-        elif c.isdigit():
-            like += c
-        else:
-            return 0
-    return float(like)
+    if text[-1] == 'K':
+        return float(text) * 1000
+    if text[-1] == 'M':
+        return float(text) * 1000000
+    
+    return float(text)
 
 
 
