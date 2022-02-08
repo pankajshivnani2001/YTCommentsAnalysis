@@ -189,9 +189,9 @@ def clean_likes(text):
     if text == "":
         return 0
     if text[-1] == 'K':
-        return float(text) * 1000
+        return float(text[:-1]) * 1000
     if text[-1] == 'M':
-        return float(text) * 1000000
+        return float(text[:-1]) * 1000000
     
     return float(text)
 
